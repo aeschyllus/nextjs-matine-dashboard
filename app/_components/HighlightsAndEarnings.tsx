@@ -1,10 +1,50 @@
 "use client";
 
 import { BarChart } from "@mantine/charts";
-import { Badge, Divider, Flex, Grid, Group, Paper, Text } from "@mantine/core";
+import {
+  Badge,
+  Divider,
+  Flex,
+  Grid,
+  Group,
+  Paper,
+  Stack,
+  Text,
+} from "@mantine/core";
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBuildingStore,
+} from "@tabler/icons-react";
 
 const data = [
   { month: "January", Metronic: 1200, Bundle: 900, MetronicNest: 200 },
+];
+
+const data2 = [
+  {
+    icon: <IconBuildingStore />,
+    name: "Online Store",
+    value: "$172k",
+    percentage: "3.9%",
+    percentageIcon: <IconArrowUp className="stroke-green-500" />,
+  },
+  {
+    icon: <IconBrandFacebook />,
+    name: "Facebook",
+    value: "$85k",
+    percentage: "0.7%",
+    percentageIcon: <IconArrowDown className="stroke-red-500" />,
+  },
+  {
+    icon: <IconBrandInstagram />,
+    name: "Instagram",
+    value: "$36k",
+    percentage: "8.2%",
+    percentageIcon: <IconArrowUp className="stroke-green-500" />,
+  },
 ];
 
 export default function HighlightAndEarnings() {
@@ -54,7 +94,27 @@ export default function HighlightAndEarnings() {
 
           <Divider my={24} />
 
-          <Group></Group>
+          <Stack>
+            {data2.map((data) => (
+              <Group
+                key={data.percentage}
+                align="center"
+                justify="space-between"
+              >
+                <Group>
+                  {data.icon}
+                  <Text>{data.name}</Text>
+                </Group>
+                <Group>
+                  <Text>{data.value}</Text>
+                  <Group gap={1} align="center">
+                    {data.percentageIcon}
+                    <Text>{data.percentage}</Text>
+                  </Group>
+                </Group>
+              </Group>
+            ))}
+          </Stack>
         </Paper>
       </Grid.Col>
       <Grid.Col span={{ base: 12, md: 8 }}>
